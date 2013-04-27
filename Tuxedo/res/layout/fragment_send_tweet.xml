@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/top_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/abs__action_bar_default_height" >
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_send_tweet_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/icon"
+            android:text="@string/fragment_send_tweet__new_tweet" />
+
+        <ImageView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/picture"
+            android:src="@drawable/ic_location_searching"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@id/picture"
+            android:layout_width="@dimen/abs__action_button_min_width"
+            android:layout_height="@dimen/abs__action_button_min_width"
+            android:padding="2dp"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/cancel"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@id/cancel"
+            android:layout_width="@dimen/abs__action_button_min_width"
+            android:padding="2dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@android:drawable/list_selector_background" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_navigation_cancel" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/edit_container"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_below="@id/top_container" >
+
+        <EditText
+            android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/top_container"
+            android:background="#CCC"
+            android:padding="5dp" />
+
+        <RelativeLayout
+            android:id="@+id/time_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/time_until_tweet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/datetime_until_tweet"
+                android:layout_alignParentRight="true"
+                android:background="#39333333"
+                android:padding="1dp"
+                android:text=" 40hr5m10s "
+                android:textColor="#010101" />
+
+            <TextView
+                android:id="@id/datetime_until_tweet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="-3dp"
+                android:background="#39333333"
+                android:padding="1dp"
+                android:text="Jan 1st 10:33 PM EST"
+                android:textColor="#010101" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/abs__action_bar_default_height"
+        android:layout_below="@id/edit_container" >
+
+        <RelativeLayout
+            android:id="@+id/gallery_picture"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/list_selector_background"
+            android:contentDescription="@string/fragment_send_tweet__add_photo_from_gallery" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_picture" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/camera_picture"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/list_selector_background"
+            android:contentDescription="@string/fragment_send_tweet__add_photo_from_camera" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_camera" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/list_selector_background"
+            android:contentDescription="@string/fragment_send_tweet__add_gps_coordinates" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_location_searching" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/clock"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/list_selector_background"
+            android:contentDescription="@string/fragment_send_tweet__add_set_time" >
+
+            <ImageView
+                android:id="@+id/clock_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_clock" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/send_tweet"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/list_selector_background"
+            android:contentDescription="@string/fragment_send_tweet__add_send_tweet" >
+
+            <ImageView
+                android:id="@+id/send_tweet_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/fragment_send_tweet__add_send_tweet"
+                android:src="@drawable/ic_send_tweet_now" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
