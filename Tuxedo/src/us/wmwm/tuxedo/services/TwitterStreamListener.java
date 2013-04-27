@@ -104,9 +104,9 @@ public class TwitterStreamListener implements UserStreamListener {
 							initialTouchY = (int) event.getRawY();
 							return true;
 						case MotionEvent.ACTION_UP:
-							if (!checkTrash(event, chatHead)) {
-								chatHead.stopDrag();
-							}
+							if (checkTrash(event, chatHead))
+                                return true;
+                            chatHead.stopDrag();
 							int diffX = Math.abs(((int) event.getRawX())
 									- initialTouchX);
 							int diffY = Math.abs(((int) event.getRawY())
