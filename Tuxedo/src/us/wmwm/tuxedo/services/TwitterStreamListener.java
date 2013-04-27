@@ -8,16 +8,29 @@ import twitter4j.TwitterStream;
 import twitter4j.User;
 import twitter4j.UserList;
 import twitter4j.UserStreamListener;
+import us.wmwm.tuxedo.views.TwitterHead;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.PixelFormat;
+import android.os.Handler;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.WindowManager;
+
+import com.loopj.android.image.SmartImageView;
 
 public class TwitterStreamListener implements UserStreamListener {
 
 	AdvancedTwitterService service;
 	TwitterStream stream;
+	WindowManager windowManager;
+	
+	Handler handler = new Handler();
 	
 	public TwitterStreamListener(TwitterStream stream, AdvancedTwitterService service) {
 		this.service = service;
 		this.stream = stream;
+		this.windowManager = (WindowManager) service.getSystemService(Context.WINDOW_SERVICE);
 	}
 
 	@Override
@@ -43,7 +56,27 @@ public class TwitterStreamListener implements UserStreamListener {
 	}
 
 	@Override
-	public void onStatus(Status status) {
+	public void onStatus(final Status status) {
+		handler.post(new Runnable() {
+			@Override
+			public void run() {
+				TwitterHead chatHead = new TwitterHead(service);
+				chatHead.update(status);
+				Log.i("PROFILE_IMAGE", status.getUser().getOriginalProfileImageURL());
+				 WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+					        WindowManager.LayoutParams.WRAP_CONTENT,
+					        WindowManager.LayoutParams.WRAP_CONTENT,
+					        WindowManager.LayoutParams.TYPE_PHONE,
+					        WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+					        PixelFormat.TRANSLUCENT);
+
+					    params.gravity = Gravity.NO_GRAVITY;
+					    params.x = 0;
+					    params.y = 100;
+					    windowManager.addView(chatHead, params);
+			}
+		});
+	
 		try {
 			service.getApp().getSession().getStatusDAO().saveStatus(stream.getId(), status);
 		} catch (Exception e) {
