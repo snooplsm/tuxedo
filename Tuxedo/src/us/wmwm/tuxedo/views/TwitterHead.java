@@ -26,4 +26,11 @@ public class TwitterHead extends RelativeLayout {
         statusTextView.setText(status.getText());
 	}
 
+    public void startDrag() {
+        statusTextView.setVisibility(GONE);
+    }
+
+    public void stopDrag() {
+        statusTextView.setVisibility(VISIBLE);
+    }
 }

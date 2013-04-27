@@ -1,5 +1,6 @@
 package us.wmwm.tuxedo.services;
 
+import android.view.*;
 import twitter4j.DirectMessage;
 import twitter4j.StallWarning;
 import twitter4j.Status;
@@ -8,16 +9,12 @@ import twitter4j.TwitterStream;
 import twitter4j.User;
 import twitter4j.UserList;
 import twitter4j.UserStreamListener;
-import us.wmwm.tuxedo.views.TwitterHead;
+import us.wmwm.tuxedo.views.TrashLayout;import us.wmwm.tuxedo.views.TwitterHead;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
 
 public class TwitterStreamListener implements UserStreamListener {
 
@@ -26,8 +23,9 @@ public class TwitterStreamListener implements UserStreamListener {
 	WindowManager windowManager;
 
 	Handler handler = new Handler();
+    private TrashLayout trashLayout;
 
-	public TwitterStreamListener(TwitterStream stream,
+    public TwitterStreamListener(TwitterStream stream,
 			AdvancedTwitterService service) {
 		this.service = service;
 		this.stream = stream;
@@ -86,12 +84,16 @@ public class TwitterStreamListener implements UserStreamListener {
 					  @Override public boolean onTouch(View v, MotionEvent event) {
 					    switch (event.getAction()) {
 					      case MotionEvent.ACTION_DOWN:
+                            chatHead.startDrag();
+                            showTrash();
 					        initialX = params.x;
 					        initialY = params.y;
 					        initialTouchX = event.getRawX();
 					        initialTouchY = event.getRawY();
 					        return true;
 					      case MotionEvent.ACTION_UP:
+                            if(!checkTrash(event, chatHead))
+                                chatHead.stopDrag();
 					        return true;
 					      case MotionEvent.ACTION_MOVE:
 					        params.x = initialX + (int) (event.getRawX() - initialTouchX);
@@ -102,6 +104,7 @@ public class TwitterStreamListener implements UserStreamListener {
 					    return false;
 					  }
 					});
+
 				windowManager.addView(chatHead, params);
 			}
 		});
@@ -124,7 +127,32 @@ public class TwitterStreamListener implements UserStreamListener {
 
 	}
 
-	@Override
+    private Boolean checkTrash(MotionEvent event, TwitterHead chatHead) {
+        Boolean isTrashed = false;
+        if (trashLayout.checkCollision(event)) {
+            windowManager.removeViewImmediate(chatHead);
+            isTrashed = true;
+        }
+        windowManager.removeViewImmediate(trashLayout);
+        return isTrashed;
+    }
+
+    private void showTrash() {
+        trashLayout = new TrashLayout(service);
+        final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_PHONE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                PixelFormat.RGBA_8888);
+
+        params.gravity = Gravity.BOTTOM;
+        params.x = 0;
+        params.y = 0;
+
+        windowManager.addView(trashLayout, params);
+    }
+
 	public void onTrackLimitationNotice(int arg0) {
 		// TODO Auto-generated method stub
 
