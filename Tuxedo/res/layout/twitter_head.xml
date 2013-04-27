@@ -21,6 +21,6 @@
         android:padding="10dp"
         android:text="Status Message"
         android:textColor="#ddd"
-        android:layout_toRightOf="@+id/icon" />
+        android:layout_toRightOf="@id/icon" />
 
 </RelativeLayout>

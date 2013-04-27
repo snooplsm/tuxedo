@@ -158,8 +158,10 @@ public class TwitterStreamListener implements UserStreamListener {
 									params.x = windowManager
 											.getDefaultDisplay().getWidth()
 											- chatHead.getWidth();
+									chatHead.right();
 								} else {
 									params.x = 0;
+									chatHead.left();
 								}
 								windowManager
 										.updateViewLayout(chatHead, params);
