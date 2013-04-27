@@ -2,16 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#66cccccc"
+    android:background="#33000000"
     android:focusable="false"
     android:focusableInTouchMode="false"
      >
-    
+
     <com.loopj.android.image.SmartImageView
 	 	android:id="@+id/icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         />
-    
+
+    <TextView
+        android:id="@+id/status_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Status Message"
+        android:textColor="#ddd"
+        android:layout_toRightOf="@+id/icon" />
 
 </RelativeLayout>
