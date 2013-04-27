@@ -79,7 +79,7 @@ public class TwitterStreamListener implements UserStreamListener {
 						WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
 						PixelFormat.RGBA_8888);
 
-				params.gravity = Gravity.NO_GRAVITY;
+				params.gravity = Gravity.TOP | Gravity.LEFT;
 				params.x = 0;
 				params.y = 100;
 				chatHead.setOnTouchListener(new View.OnTouchListener() {
