@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content" >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
         android:background="#EAEAEA"
+        android:layout_alignParentBottom="true"
         android:paddingLeft="16dp"
         android:paddingRight="16dp" >
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/box"
-            >
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/box">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -28,10 +27,11 @@
 
                 <com.loopj.android.image.SmartImageView
                     android:id="@+id/icon2"
-                    android:layout_width="300dp"
-                    android:layout_height="300dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/text"
                     android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
                     android:visibility="gone" />
             </RelativeLayout>
         </ScrollView>
@@ -55,18 +55,18 @@
             <EditText
                 android:id="@+id/edit"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="4"
+                android:background="#ccc"
                 android:inputType="textNoSuggestions"
                 android:textColor="#1A1A1A" />
 
             <Button
                 android:id="@+id/send_button"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Send"
-                android:textColor="#1A1A1A" />
+                android:layout_height="50dp"
+                android:layout_weight="1"                
+                android:text="Send" />
         </LinearLayout>
     </RelativeLayout>
 

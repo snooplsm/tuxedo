@@ -148,14 +148,12 @@ public class TwitterStreamListener implements UserStreamListener {
 										});
 								final WindowManager.LayoutParams viewsParam = new WindowManager.LayoutParams(
 										WindowManager.LayoutParams.MATCH_PARENT,
-										windowManager.getDefaultDisplay()
-												.getHeight()
-												- chatHead.getHeight(),
+										WindowManager.LayoutParams.MATCH_PARENT,
 										WindowManager.LayoutParams.TYPE_PHONE,
 										0, PixelFormat.RGBA_8888);
 								viewsParam.gravity = Gravity.TOP | Gravity.LEFT;
 								viewsParam.x = 0;
-								viewsParam.y = chatHead.getHeight();
+								viewsParam.y = 0;
 								params.x = windowManager.getDefaultDisplay()
 										.getWidth() - chatHead.getWidth();
 								params.y = 0;
