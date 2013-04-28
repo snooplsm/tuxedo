@@ -42,11 +42,11 @@ public class TwitterHead extends RelativeLayout {
     	RelativeLayout.LayoutParams iconLP = (RelativeLayout.LayoutParams) icon.getLayoutParams();
     	RelativeLayout.LayoutParams textLP = (RelativeLayout.LayoutParams) statusTextView.getLayoutParams();
     	
-    	iconLP.removeRule(RelativeLayout.RIGHT_OF);
+    	iconLP.addRule(RelativeLayout.RIGHT_OF,0);
     	iconLP.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-    	textLP.removeRule(RelativeLayout.LEFT_OF);
+    	textLP.addRule(RelativeLayout.LEFT_OF,0);
     	textLP.addRule(RelativeLayout.RIGHT_OF,R.id.icon);
-    	textLP.removeRule(RelativeLayout.ALIGN_PARENT_LEFT);
+    	textLP.addRule(RelativeLayout.ALIGN_PARENT_LEFT,0);
     	textLP.width = LayoutParams.WRAP_CONTENT;
     	statusTextView.setGravity(Gravity.LEFT);
     	invalidate();
@@ -56,7 +56,7 @@ public class TwitterHead extends RelativeLayout {
     	RelativeLayout.LayoutParams iconLP = (RelativeLayout.LayoutParams) icon.getLayoutParams();
     	RelativeLayout.LayoutParams textLP = (RelativeLayout.LayoutParams) statusTextView.getLayoutParams();
     	int width = statusTextView.getWidth();
-    	iconLP.removeRule(RelativeLayout.ALIGN_PARENT_LEFT);
+    	iconLP.addRule(RelativeLayout.ALIGN_PARENT_LEFT,0);
     	iconLP.addRule(RelativeLayout.RIGHT_OF,R.id.status_textview);
     	int maxWidth = getContext().getResources().getDisplayMetrics().widthPixels;
     	maxWidth -=icon.getWidth();
@@ -64,7 +64,7 @@ public class TwitterHead extends RelativeLayout {
     	if(width > (getContext().getResources().getDisplayMetrics().widthPixels - iconLP.width*2)) {
     		textLP.width = maxWidth;
     	}
-    	textLP.removeRule(RelativeLayout.RIGHT_OF);
+    	textLP.addRule(RelativeLayout.RIGHT_OF,0);
     	statusTextView.setGravity(Gravity.RIGHT);
     	textLP.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
     	invalidate();
