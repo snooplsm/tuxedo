@@ -1,5 +1,7 @@
 package us.wmwm.tuxedo.services;
 
+import android.view.animation.BounceInterpolator;
+import android.view.animation.TranslateAnimation;
 import twitter4j.DirectMessage;
 import twitter4j.StallWarning;
 import twitter4j.Status;
@@ -23,6 +25,9 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TwitterStreamListener implements UserStreamListener {
 
 	AdvancedTwitterService service;
@@ -31,8 +36,9 @@ public class TwitterStreamListener implements UserStreamListener {
 
 	Handler handler = new Handler();
 	private TrashLayout trashLayout;
+    private Map<Long, TwitterHead> chatHeadMap = new HashMap<Long, TwitterHead>();
 
-	public TwitterStreamListener(TwitterStream stream,
+    public TwitterStreamListener(TwitterStream stream,
 			AdvancedTwitterService service) {
 		this.service = service;
 		this.stream = stream;
@@ -68,7 +74,13 @@ public class TwitterStreamListener implements UserStreamListener {
 		handler.post(new Runnable() {
 			@Override
 			public void run() {
+                TwitterHead chatHead2 = chatHeadMap.get(status.getUser().getId());
+                if (chatHead2!=null) {
+                    chatHead2.update(status);
+                    return;
+                }
 				final TwitterHead chatHead = new TwitterHead(service);
+                chatHeadMap.put(status.getUser().getId(), chatHead);
 				chatHead.update(status);
 				Log.i("PROFILE_IMAGE", status.getUser()
 						.getOriginalProfileImageURL());
