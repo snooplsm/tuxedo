@@ -2,34 +2,37 @@ package us.wmwm.tuxedo.views;
 
 import java.util.Calendar;
 
+import com.loopj.android.image.SmartImageView;
+
+import twitter4j.MediaEntity;
 import twitter4j.Status;
 import us.wmwm.tuxedo.R;
 import us.wmwm.tuxedo.app.PendingTweet;
 import us.wmwm.tuxedo.services.AdvancedTwitterService;
+import us.wmwm.tuxedo.util.Views;
 import android.content.Context;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class ChatViews extends RelativeLayout {
 
-	TextView text;
+	TimelineView text;
 	EditText edit;
 	View send;
 	
 	AdvancedTwitterService service;
 	
+	SmartImageView smart;
+	
 	public ChatViews(Context context) {
 		super(context);
 		
 		LayoutInflater.from(context).inflate(R.layout.chatview, this);
-		text = (TextView) findViewById(R.id.text);
+		text = (TimelineView) findViewById(R.id.text);
 		edit = (EditText) findViewById(R.id.edit);
 		edit.setOnClickListener(new OnClickListener() {
 			@Override
@@ -39,6 +42,7 @@ public class ChatViews extends RelativeLayout {
 			}
 		});
 		send = findViewById(R.id.send_button);
+		smart = Views.findView(this, R.id.icon2);
 		send.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -74,8 +78,15 @@ public class ChatViews extends RelativeLayout {
 	public void setContext(AdvancedTwitterService service, Status status, OnAction onAction) {
 		this.service = service;
 		this.onAction = onAction;
-		text.setText(status.getText());
-		edit.setText("@"+status.getUser().getScreenName());
+		text.setStatus(service.getApp().getSession(), status);
+		edit.setText("@"+status.getUser().getScreenName()+ " ");
+		if(status.getMediaEntities()!=null && status.getMediaEntities().length>0) {
+			MediaEntity e = status.getMediaEntities()[0];
+			if("photo".equals(e.getType())) {
+				smart.setImageUrl(e.getMediaURL());
+				smart.setVisibility(View.VISIBLE);
+			}
+		}
 	}
 
 }

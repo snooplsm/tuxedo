@@ -1,7 +1,8 @@
 package us.wmwm.tuxedo.services;
 
-import android.view.animation.BounceInterpolator;
-import android.view.animation.TranslateAnimation;
+import java.util.HashMap;
+import java.util.Map;
+
 import twitter4j.DirectMessage;
 import twitter4j.StallWarning;
 import twitter4j.Status;
@@ -24,9 +25,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class TwitterStreamListener implements UserStreamListener {
 
@@ -229,7 +227,7 @@ public class TwitterStreamListener implements UserStreamListener {
 	private void showTrash() {
 		trashLayout = new TrashLayout(service);
 		final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-				WindowManager.LayoutParams.WRAP_CONTENT,
+				WindowManager.LayoutParams.MATCH_PARENT,
 				WindowManager.LayoutParams.WRAP_CONTENT,
 				WindowManager.LayoutParams.TYPE_PHONE,
 				WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,

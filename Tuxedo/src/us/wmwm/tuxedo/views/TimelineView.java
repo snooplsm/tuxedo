@@ -22,22 +22,19 @@ public class TimelineView extends RelativeLayout {
 	
 	private SmartImageView image;
 
-	public TimelineView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
+
+	public TimelineView(Context context, AttributeSet attrs) {
+		super(context,attrs);
 		LayoutInflater.from(context).inflate(R.layout.view_timeline,this);
 		screenName = Views.findView(this,R.id.screen_name);
 		name = Views.findView(this, R.id.name);
-		text = Views.findView(this, R.id.text);
+		text = Views.findView(this, R.id.text2);
 		image = Views.findView(this, R.id.image);
 		date = Views.findView(this, R.id.date);
 	}
 
-	public TimelineView(Context context, AttributeSet attrs) {
-		this(context, attrs,-1);
-	}
-
 	public TimelineView(Context context) {
-		this(context,null,-1);
+		this(context,null);
 	}
 
 	public void setStatus(SessionAT session, Status status) {

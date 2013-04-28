@@ -47,6 +47,7 @@ public class TwitterHead extends RelativeLayout {
     	textLP.removeRule(RelativeLayout.LEFT_OF);
     	textLP.addRule(RelativeLayout.RIGHT_OF,R.id.icon);
     	textLP.removeRule(RelativeLayout.ALIGN_PARENT_LEFT);
+    	textLP.width = LayoutParams.WRAP_CONTENT;
     	statusTextView.setGravity(Gravity.LEFT);
     	invalidate();
     }
@@ -54,9 +55,15 @@ public class TwitterHead extends RelativeLayout {
     public void right() {
     	RelativeLayout.LayoutParams iconLP = (RelativeLayout.LayoutParams) icon.getLayoutParams();
     	RelativeLayout.LayoutParams textLP = (RelativeLayout.LayoutParams) statusTextView.getLayoutParams();
-    	
+    	int width = statusTextView.getWidth();
     	iconLP.removeRule(RelativeLayout.ALIGN_PARENT_LEFT);
     	iconLP.addRule(RelativeLayout.RIGHT_OF,R.id.status_textview);
+    	int maxWidth = getContext().getResources().getDisplayMetrics().widthPixels;
+    	maxWidth -=icon.getWidth();
+    	maxWidth-=icon.getWidth();
+    	if(width > (getContext().getResources().getDisplayMetrics().widthPixels - iconLP.width*2)) {
+    		textLP.width = maxWidth;
+    	}
     	textLP.removeRule(RelativeLayout.RIGHT_OF);
     	statusTextView.setGravity(Gravity.RIGHT);
     	textLP.addRule(RelativeLayout.ALIGN_PARENT_LEFT);

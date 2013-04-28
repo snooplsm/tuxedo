@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#aa000000" >
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@drawable/orca_anchorable_toast_background" >
 
-    <ImageView android:id="@+id/trash_imageview"
-               android:src="@android:drawable/ic_menu_delete"
-               android:layout_height="wrap_content"
-               android:layout_width="wrap_content"
-               android:contentDescription="trash"
-               android:layout_centerHorizontal="true"
-               android:layout_centerVertical="true"/>
+    <ImageView
+        android:id="@+id/trash_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="trash"
+        android:src="@android:drawable/ic_menu_delete" />
 
 </RelativeLayout>
