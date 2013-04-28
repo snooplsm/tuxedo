@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Tuxedo</string>
+    <string name="app_name">Status Heads</string>
     
     <string name="label_following">following</string>
     <string name="label_followers">followers</string>

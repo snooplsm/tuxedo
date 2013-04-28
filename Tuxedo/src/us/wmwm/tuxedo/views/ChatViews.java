@@ -66,6 +66,16 @@ public class ChatViews extends RelativeLayout {
 				return false;
 			}
 		});
+		
+		send.setOnFocusChangeListener(new OnFocusChangeListener() {
+			
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if(!hasFocus) {
+					ChatViews.this.requestFocus();
+				}
+			}
+		});
 	}
 	
 	public interface OnAction {

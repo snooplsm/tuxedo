@@ -11,20 +11,30 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp" >
 
-        <us.wmwm.tuxedo.views.TimelineView
-            android:id="@+id/text"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/icon2" />
-
-        <com.loopj.android.image.SmartImageView
-            android:id="@+id/icon2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_above="@+id/box"
-            android:layout_centerHorizontal="true"
-            android:adjustViewBounds="true"
-            android:visibility="gone" />
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <us.wmwm.tuxedo.views.TimelineView
+                    android:id="@+id/text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.loopj.android.image.SmartImageView
+                    android:id="@+id/icon2"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_below="@id/text"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone" />
+            </RelativeLayout>
+        </ScrollView>
 
         <View
             android:id="@id/box"
